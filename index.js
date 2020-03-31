@@ -35,19 +35,21 @@ app.get('/api/genres', (req, res) => {
 
 // GET requests for single genres:
 app.get('/api/genres/:id', (req, res) => {
+
   const genre = genres.find(c => c.id === parseInt(req.params.id));   // Finding the given genre, by the req.params.id
+
   if(genre) res.send(genre);      // If the genre exists then it is sent via the response.
+  
   else res.status(404).send('Cannot find the genre');   // Else a status of 404 with a message is sent back.
 });
 
 // POST requests:
 app.post('/api/genres', (req, res) => {
+  // Validate:
   const { error } = validateGenre(req.body);
 
-  if(error){       // If there is any error in the validation then the following block is executed.
-    res.status(400).send(result.error.details[0].message);
-    return;
-  }
+  // If invalid, return 400 - BAD request.
+  if(error) return res.status(400).send(result.error.details[0].message);
 
   const genre = {                 // The object that needs to be posted.
     id: genres.length + 1,
@@ -69,15 +71,28 @@ app.put('/api/genres/:id', (req, res) => {
   // Validate:
   const { error } = validateGenre(req.body);
   // If invalid, return 400 - BAD request.
-  if(error){
-    res.status(400).send(result.error.details[0].message);
-    return;
-  }
+  if(error) return res.status(400).send(result.error.details[0].message);
 
   // Update the genres.
   genre.name = req.body.name;
 
   // Return the updated genre.
+  res.send(genre);
+
+});
+
+app.delete('/api/genres/:id', (req, res) => {
+  // Look up the course:
+  const genre = genres.find(c => c.id === parseInt(req.params.id));
+
+  // If not existing, return 404:
+  if(!genre) return res.status(404).send('The genre doesn\'t exist.');
+
+  // Delete:
+  const index = genres.indexOf(genre);
+  genres.splice(index, 1);
+
+  // Return the same course:
   res.send(genre);
 
 });
