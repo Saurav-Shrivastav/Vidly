@@ -1,6 +1,8 @@
 const express = require('express');   // Instantiating the express object that returns a function.
 const app = express();
 
+app.use(express.json());    // To enable parsing of json objects to use the req.body.name in the post and put requests.
+
 const genres = [
   {
     id: 1,
@@ -36,7 +38,15 @@ app.get('/api/genres/:id', (req, res) => {
   else res.status(404).send('Cannot find the genre');   // Else a status of 404 with a message is sent back.
 });
 
-
+// POST requests:
+app.post('/api/genres', (req, res) => {
+  const genre = {
+    id: genres.length + 1,
+    name: req.body.name
+  };
+  genres.push(genre);
+  res.send(genre);
+});
 
 // PORT:
 const port = process.env.PORT || 3000;  // the global object 'process' has the env property which has a PORT property which gives the available ports on the server at that time else port-3000 is assigned.
