@@ -4,7 +4,9 @@
   "description": "An imaginary service for renting out movies.",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.17.1"
+    "@hapi/joi": "^17.1.1",
+    "express": "^4.17.1",
+    "joi": "^14.3.1"
   },
   "devDependencies": {},
   "scripts": {
