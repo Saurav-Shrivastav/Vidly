@@ -18,5 +18,5 @@ function validateGenre(genre) {
   return Joi.validate(genre, schema); // Validates the body of the request with the schema.
 }
 
-exports.Genre = Genre ;
-exports.validate = validateGenre ;
+exports.Genre = Genre;
+exports.validate = validateGenre;

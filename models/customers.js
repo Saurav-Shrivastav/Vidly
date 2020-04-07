@@ -21,7 +21,7 @@ const customerSchema = new mongoose.Schema({
 
 const Customer = mongoose.model('Customer', customerSchema);
 
-function validateCustomer(customer){
+function validateCustomer(customer) {
   const schema = {
     name: Joi.string().min(3).max(10).required(),
     isGold: Joi.boolean(),
