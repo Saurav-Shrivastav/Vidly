@@ -14,7 +14,7 @@ mongoose.set('useFindAndModify', false);
 
 app.use(express.json()); // To enable parsing of json objects to use the req.body.name in the post and put requests.
 app.use('/api/genres', genres);
-app.use('/api/customers', customers); // Route handler
+app.use('/api/customers', customers);
 
 app.get('/', (req, res) => {
   res.send('Head over to /api/courses to get the genres.');
