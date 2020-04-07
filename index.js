@@ -1,7 +1,13 @@
 
+const mongoose = require('mongoose');
 const genres = require('./routes/genres.js')
 const express = require('express'); // Instantiating the express object that returns a function.
 const app = express();
+
+mongoose.connect('mongodb://localhost/Vidly', { useUnifiedTopology: true, useNewUrlParser: true })
+  .then(() => console.log('Connected to the db....'))
+  .catch(err => console.log('Could not conect to the database', err));
+mongoose.set('useFindAndModify', false);
 
 app.use(express.json()); // To enable parsing of json objects to use the req.body.name in the post and put requests.
 app.use('/api/genres', genres);
