@@ -38,9 +38,9 @@ function validateUser(user) {
       .min(5)
       .max(255)
       .email(),
-    phone: Joi
+    password: Joi
       .string()
-      .requird()
+      .required()
       .min(5)
       .max(255)
   };
