@@ -35,7 +35,7 @@ function validateMovie(movie) {
       .min(3)
       .max(70),
     genreId: Joi
-      .string()
+      .objectId()
       .required(),
     numberInStock: Joi
       .number()
