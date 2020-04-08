@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 
-const Rental = mongoose.model('Rental', new mongoose.Schema {
+const Rental = mongoose.model('Rental', new mongoose.Schema ({
   customer: {
     type: new mongoose.Schema({
       name: {
@@ -52,7 +52,7 @@ const Rental = mongoose.model('Rental', new mongoose.Schema {
     type: Number,
     min: 0
   }
-});
+}));
 
 function validateRental(rental) {
   const schema = {

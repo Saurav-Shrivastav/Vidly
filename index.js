@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const genres = require('./routes/genres.js');
 const customers = require('./routes/customers.js');
 const movies = require('./routes/movies.js');
+const rentals = require('./routes/rentals.js');
 const express = require('express'); // Instantiating the express object that returns a function.
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(express.json()); // To enable parsing of json objects to use the req.bod
 app.use('/api/genres', genres);
 app.use('/api/customers', customers);
 app.use('/api/movies', movies);
+app.use('/api/rentals', rentals);
 
 app.get('/', (req, res) => {
   res.send('Head over to /api/courses to get the genres.');
