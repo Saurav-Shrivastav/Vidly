@@ -6,6 +6,7 @@ const customers = require('./routes/customers.js');
 const movies = require('./routes/movies.js');
 const rentals = require('./routes/rentals.js');
 const users = require('./routes/users.js');
+const auth = require('./routes/auth.js');
 const express = require('express'); // Instantiating the express object that returns a function.
 const app = express();
 
@@ -24,6 +25,7 @@ app.use('/api/customers', customers);
 app.use('/api/movies', movies);
 app.use('/api/rentals', rentals);
 app.use('/api/users', users);
+app.use('/api/auth', auth);
 
 app.get('/', (req, res) => {
   res.send('Head over to /api/courses to get the genres.');
