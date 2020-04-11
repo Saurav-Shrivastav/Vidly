@@ -1,3 +1,4 @@
+const auth = require('../middleware/auth');
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const express = require('express');
@@ -7,6 +8,11 @@ const {
   User
 } = require('../models/users.js');
 const _ = require('lodash');
+
+router.get('/me', auth, async (req, res) => {
+  const user = await User.findById(req.user._id).select('-password');
+  res.send(password);
+});
 
 router.post('/', async (req, res) => {
   const {
