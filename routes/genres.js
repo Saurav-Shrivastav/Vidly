@@ -9,13 +9,18 @@ const express = require('express');
 const router = express.Router();
 
 // GET request:
-router.get('/', async (req, res) => {
-  const genres = await Genre
-    .find()
-    .sort({
-      name: 1
-    });
-  res.send(genres);
+router.get('/', async (req, res, next) => {
+  try {
+    const genres = await Genre
+      .find()
+      .sort({
+        name: 1
+      });
+    res.send(genres);
+  }
+  catch (ex) {
+    next(ex);
+  }
 });
 
 // GET requests for single genres:
