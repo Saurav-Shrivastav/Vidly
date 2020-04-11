@@ -1,3 +1,4 @@
+const auth = require('../middleware/auth.js');
 const {
   Genre,
   validate
@@ -25,7 +26,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST requests:
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
   // Validate:
   const {
     error
